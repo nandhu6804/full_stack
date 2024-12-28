@@ -17,10 +17,19 @@ console.log(a);
 console.log("a=",a)
 
 //Relational operators
-b=20
+b=10
 c=b<a;
 console.log("\n",c);
 console.log(b>a);
+/*if(a==b){
+    console.log("Equal==")
+}
+else */if (a===b){
+    console.log("Equal===")
+}
+else{
+    console.log("not equal")
+}
 console.log("a=",a," b=",b)
 
 //Logical Operators
