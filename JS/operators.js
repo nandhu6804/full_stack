@@ -21,14 +21,26 @@ b=10
 c=b<a;
 console.log("\n",c);
 console.log(b>a);
-/*if(a==b){
-    console.log("Equal==")
+var d=10
+if(a==d){
+    console.log("\nboth values are same but not types so it's printing true\n== just checks values not datatypes")
+    console.log(a==d)
 }
-else */if (a===b){
-    console.log("Equal===")
+if (a===d){
+    console.log("\nboth values are same but not same so it's printing false\n=== strictly checks values and datatypes")
+    console.log(a===d)
 }
 else{
-    console.log("not equal")
+    console.log("\nnot equal")
+}
+
+var f="20"
+if (a===f){
+    console.log("\nboth values are same but not same so it's printing false\n=== strictly checks values and datatypes")
+    console.log(a===f)
+}
+else{
+    console.log("\nnot equal")
 }
 console.log("a=",a," b=",b)
 
