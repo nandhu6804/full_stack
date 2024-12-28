@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FULL STACK</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: grey;
+            background-image: url('https://www.bleepstatic.com/content/hl-images/2022/04/08/GitHub__headpic.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        legend {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .success-message h1 {
+            color: #4caf50;
+        }
+
+        .success-message p {
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <b>
+        <h1 style="text-align: center; color: darkseagreen;">I'M NANDHITHA PRAKASAN....</h1>
+    </b>
+    <div class="form-container" id="form-container">
+        <b>
+            <h1 style="text-align: center;">INFORMATION</h1>
+        </b>
+        <form id="info-form" onsubmit="handleFormSubmit(event)">
+            <fieldset>
+                <legend>INFORMATION</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="number" id="phone" placeholder="Enter phone number" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" placeholder="Enter age" required>
+
+                <label for="address">Address:</label>
+                <textarea id="address" rows="4" placeholder="Enter address" required></textarea>
+
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                    <label><input type="radio" name="gender" value="others" required> Others</label>
+                </div>
+
+                <label>Degree:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="degree" value="cse" required> CSE</label>
+                    <label><input type="radio" name="degree" value="ece" required> ECE</label>
+                    <label><input type="radio" name="degree" value="others" required> Others</label>
+                </div>
+
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="success-message" id="success-message">
+        <h1>Form Submitted Successfully!!....</h1>
+        <p>Thank you !!!!!!!</p>
+        <button onclick="resetForm()">Go Back</button>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        }
+
+        function resetForm() {
+            document.getElementById('form-container').style.display = 'block'; 
+            document.getElementById('success-message').style.display = 'none'; 
+            document.getElementById('info-form').reset(); 
+        }
+    </script>
+</body>
+
+</html>
