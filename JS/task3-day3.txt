@@ -1,0 +1,9 @@
+why default is used and why it is used while exporting class/function in react?
+
+The default keyword in JavaScript is used when exporting a class, function, or variable to indicate that it is the default export of a module. 
+In React, this is commonly used to export components, utility functions, or classes.
+
+The default export allows you to export a single value or entity from a module and import it without using curly braces {}. 
+This is useful when a module is designed to export one primary thing.
+
+eg:in fullstack-proj

@@ -1,8 +1,6 @@
 //1.variables
 //var,let,const -> refer to declaration.js
 
-const { matchesGlob } = require("path")
-
 //2.arrow function
 arrowfun = (studentDept) => {
     console.log(studentDept)
@@ -34,10 +32,10 @@ a = [...a1, ...a2]
 console.log(a)
 
 //6.rest operator
-function restop(...arr1){
+function restop(...arr1) {
     console.log(arr1);
 }
-restop(a,b,c)
+restop('a', 'b', 'c')
 
 //7.scope
 var a = 5
@@ -58,13 +56,13 @@ console.log("outside", pi)
 
 //8.hoisting
 console.log(x)
-var x=10
+var x = 10
 console.log(x)
 
-console.log(y)
-let y=10
+console.log(y)//error:ReferenceError: Cannot access 'y' before initialization
+let y = 10
 console.log(y)
 
-console.log(z)
-const z=10
+console.log(z)//error:ReferenceError: Cannot access 'z' before initialization
+const z = 10
 console.log(z)

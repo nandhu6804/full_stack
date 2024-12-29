@@ -1,4 +1,4 @@
-//spread operator(...)--to spread elements from iterrable to individual elements[merging arrays,copying,passing multiple elements]
+//spread operator(...)--to spread elements from iterable to individual elements[merging arrays,copying,passing multiple elements]
 //merging arrays
 var a = [1, 2, 3]
 var b = [4, 5, 6]
