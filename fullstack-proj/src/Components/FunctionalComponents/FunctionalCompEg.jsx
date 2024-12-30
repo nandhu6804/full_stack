@@ -3,7 +3,7 @@ import React from 'react';
 const FunctionalCompEg = () => {
     return (
         <div>
-            <h3>This is a functional component</h3>
+            <h2>This is a functional component</h2>
             <ul>
                 <li>Node.js</li>
                 <li>Express.js</li>
