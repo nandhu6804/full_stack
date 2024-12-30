@@ -1,19 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import ClassCompEg from './Components/ClassComponents/classCompEg'
-import FunctionalCompEg from './Components/FunctionalComponents/FunctionalCompEg'
-import Navbar from './Components/FunctionalComponents/Home'
+import Home from './Components/FunctionalComponents/Home'
+import About from './Components/FunctionalComponents/About'
+import Gallery from './Components/FunctionalComponents/Gallery'
+import Contact from './Components/FunctionalComponents/Contact'
+import NavBar from './Components/FunctionalComponents/Navbar'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div>
-      <ClassCompEg />
-      <FunctionalCompEg />
-      <Navbar />
+      <NavBar/>
+      <Home />
+      <About clg1="KVITT"/>
+      <Gallery />
+      <Contact />
     </div>
   );
 }

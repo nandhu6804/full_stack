@@ -1,12 +1,26 @@
 .box-model{
-    font-size: 100px;
-    margin: 10px;
-    border: 20px green;
+    font-size: 20px;
+    margin: 50px;
+    border: 10px green;
     border-style: solid;
-    padding: 20px;
+    padding: 40px;
     scroll-padding: auto;
 }
 
 #idSEg{
+    color: maroon;
     text-align: center;
+    font-size: xx-large;
+}
+
+ol{
+    text-align: justify;
+}
+
+.box-model1{
+    font-size: 20px;
+    text-align: justify;
+    border: 10px green solid;
+    padding: 40px;
+    margin: 50px;
 }

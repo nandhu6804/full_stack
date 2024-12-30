@@ -1,0 +1,25 @@
+ul {
+    display: flex;
+    padding: 2px;
+    margin: 0;
+    justify-content: space-evenly;
+    text-align: center;
+    text-decoration: none;
+    list-style-type: none;
+    background-color: firebrick;
+    color: aliceblue;
+    padding: 10px;
+}
+
+li {
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+li:hover {
+    background-color: black;
+    border-radius: 10px;
+    color: azure;
+    padding: 3px;
+}
