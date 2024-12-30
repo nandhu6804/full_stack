@@ -1,4 +1,5 @@
 import "../../assets/css/Home.css"
+
 var Navbar = () => {
     var styling = {
         color: "blue",

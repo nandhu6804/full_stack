@@ -1,0 +1,10 @@
+1.how multiple components routes
+2.how inline,external and internal css coordinates as same output
+3.footer with form in fullstack-proj
+
+
+1.To set up multiple components with routing in our application, you can use a routing library like React Router for React applications or Express Router for Node.js/Express backend routing.
+
+2.Inline CSS applies styles directly within an element's style attribute. Internal CSS uses a <style> block in the HTML <head> to define styles for the document. External CSS links a separate stylesheet file, allowing reusable and centralized styling, with all methods producing the same output if styles match.
+
+3.fullstack-proj==>index.js

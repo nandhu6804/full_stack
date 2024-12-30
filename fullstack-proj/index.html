@@ -1,4 +1,4 @@
-<!doctype html>
+<!--<!doctype html>
 <html lang="en">
 
 <head>
@@ -13,4 +13,125 @@
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up and Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 5px 10px;
+      border: 1px solid white;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: white;
+      color: #4CAF50;
+    }
+
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    form {
+      margin: 20px auto;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, textarea, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">Welcome</h1>
+    <nav>
+      <a href="#" id="navbar-signup">Sign Up</a>
+      <a href="#" id="navbar-login">Sign In</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <p>Welcome to our platform! Please sign up or sign in to continue.</p>
+  </main>
+
+  <footer>
+    <h3 style="margin: 5px 0;">Personal Details Form</h3>
+    <form id="footer-form">
+      <input type="text" id="footer-name" placeholder="Full Name" required>
+      <input type="email" id="footer-email" placeholder="Email Address" required>
+      <input type="tel" id="footer-phone" placeholder="Phone Number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number" required>
+      <textarea id="footer-address" placeholder="Address" rows="2" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
 </html>

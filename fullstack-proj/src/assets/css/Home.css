@@ -24,3 +24,22 @@ ol{
     padding: 40px;
     margin: 50px;
 }
+
+.alert {
+    margin: 15px 0;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
