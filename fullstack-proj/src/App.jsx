@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ClassCompEg from './Components/ClassComponents/classCompEg'
 import FunctionalCompEg from './Components/FunctionalComponents/FunctionalCompEg'
-import Navbar from './Components/FunctionalComponents/Navbar'
+import Navbar from './Components/FunctionalComponents/Home'
 
 function App() {
   const [count, setCount] = useState(0)

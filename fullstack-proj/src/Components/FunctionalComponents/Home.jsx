@@ -1,14 +1,15 @@
-import "../../assets/css/Navbar.css"
+import "../../assets/css/Home.css"
 var Navbar = () => {
     var styling = {
         color: "blue",
         fontSize: "30px",
-        textDecoration: "underlin"
+        textDecoration: "underline"
     }
     return (
         <header>
-            <h1 style={styling}>This is Navbar component</h1>
+            <h1 style={styling}>This is Home Page</h1>
             <h2 id="idSEg">Testing Styling</h2>
+            <p className="box-model">Hello</p>
         </header>
     )
 }

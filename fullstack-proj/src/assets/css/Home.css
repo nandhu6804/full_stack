@@ -1,0 +1,12 @@
+.box-model{
+    font-size: 100px;
+    margin: 10px;
+    border: 20px green;
+    border-style: solid;
+    padding: 20px;
+    scroll-padding: auto;
+}
+
+#idSEg{
+    text-align: center;
+}
