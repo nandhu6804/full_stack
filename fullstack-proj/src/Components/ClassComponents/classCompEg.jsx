@@ -4,7 +4,7 @@ class ClassCompEg extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is a class component</h1>
+        <h3>This is a class component</h3>
         <ul>
           <li>React</li>
           <li>JavaScript</li>

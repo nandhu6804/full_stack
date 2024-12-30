@@ -1,3 +1,5 @@
+//implement functional component in fullstack-proj
+
 import React from 'react';
 
 const FunctionalCompEg = () => {
