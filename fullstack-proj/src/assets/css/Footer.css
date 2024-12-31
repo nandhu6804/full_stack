@@ -1,0 +1,140 @@
+/* Base styles for the footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-top: 3px solid #007bff;
+  }
+  
+  .footer-title {
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 20px;
+    color: #ffd700; /* Golden color for the quote */
+  }
+  
+  /* Base form styles */
+  .footer-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Spacing between inputs */
+  }
+  
+  .footer-form input,
+  .footer-form select,
+  .footer-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 200px;
+  }
+  
+  /* Color Variation 1: Blue */
+  .footer-form.blue input,
+  .footer-form.blue select,
+  .footer-form.blue textarea {
+    background-color: #e7f4ff;
+    border-color: #007bff;
+    color: #007bff;
+  }
+  
+  .footer-form.blue input:focus,
+  .footer-form.blue select:focus,
+  .footer-form.blue textarea:focus {
+    border-color: #0056b3;
+  }
+  
+  /* Color Variation 2: Green */
+  .footer-form.green input,
+  .footer-form.green select,
+  .footer-form.green textarea {
+    background-color: #e7f7e7;
+    border-color: #28a745;
+    color: #28a745;
+  }
+  
+  .footer-form.green input:focus,
+  .footer-form.green select:focus,
+  .footer-form.green textarea:focus {
+    border-color: #218838;
+  }
+  
+  /* Color Variation 3: Red */
+  .footer-form.red input,
+  .footer-form.red select,
+  .footer-form.red textarea {
+    background-color: #ffe6e6;
+    border-color: #dc3545;
+    color: #dc3545;
+  }
+  
+  .footer-form.red input:focus,
+  .footer-form.red select:focus,
+  .footer-form.red textarea:focus {
+    border-color: #c82333;
+  }
+  
+  /* Color Variation 4: Purple */
+  .footer-form.purple input,
+  .footer-form.purple select,
+  .footer-form.purple textarea {
+    background-color: #f4e1f7;
+    border-color: #6f42c1;
+    color: #6f42c1;
+  }
+  
+  .footer-form.purple input:focus,
+  .footer-form.purple select:focus,
+  .footer-form.purple textarea:focus {
+    border-color: #5a2d91;
+  }
+  
+  /* Color Variation 5: Yellow */
+  .footer-form.yellow input,
+  .footer-form.yellow select,
+  .footer-form.yellow textarea {
+    background-color: #fff9e6;
+    border-color: #ffc107;
+    color: #ffc107;
+  }
+  
+  .footer-form.yellow input:focus,
+  .footer-form.yellow select:focus,
+  .footer-form.yellow textarea:focus {
+    border-color: #e0a800;
+  }
+  
+  /* Button Styles */
+  .footer-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .footer-form button:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-form {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .footer-form input,
+    .footer-form select,
+    .footer-form textarea {
+      width: 100%;
+    }
+  }
+  
