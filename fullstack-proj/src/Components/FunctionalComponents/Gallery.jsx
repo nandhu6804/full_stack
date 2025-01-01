@@ -26,7 +26,8 @@ const Gallery = () => {
 export default Gallery*/
 
 import React, { useState } from 'react';
-import './Gallery.css'; // Ensure you have a corresponding CSS file for styling
+import '../../assets/css/Gallery.css';
+ // Adjust the path based on your folder structure
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -84,9 +85,6 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
-
-
 
 
 

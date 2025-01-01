@@ -11,10 +11,13 @@ var NavBar=()=>{
                     <li><Link to='/about' target="blank">About</Link></li>
                     <li><Link to='/gallery'>Gallery</Link></li>
                     <li><Link to='/useeffect'>Use Effect</Link></li>
+                    <li><Link to='/usecontext'>Use Context</Link></li>
+                    <li><Link to='/usememo'>Use Memo</Link></li>
+                    <li><Link to ='/useref'>Use ref</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
                 </ul>
             </nav>
         </header>
     );
 }
-export default NavBar
+export default NavBar;
