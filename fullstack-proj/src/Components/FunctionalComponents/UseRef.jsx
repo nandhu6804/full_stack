@@ -32,9 +32,9 @@ const UseRef = () => {
             <label htmlFor="numberInput" style={{ marginRight: "10px" }}>
                 Enter a number:
             </label>
-            <input id="numberInput" type="number" value={number} onChange={(e) => setNumber(Number(e.target.value))}/>
+            <input id="numberInput" type="number" value={number} onChange={(e) => setNumber(Number(e.target.value))} />
             <h2 style={{ marginTop: "20px" }}>Current number: {number}</h2>
-            <h3>Previous number: {prevNumber.current+number}</h3>
+            <h3>Previous number: {prevNumber.current}</h3>
         </section>
     );
 };
