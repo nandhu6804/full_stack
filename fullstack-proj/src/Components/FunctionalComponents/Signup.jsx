@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Signup({ setIsAuthenticated }) {
+function SignUp({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -72,4 +72,4 @@ function Signup({ setIsAuthenticated }) {
     );
 }
 
-export default Signup;
+export default SignUp;

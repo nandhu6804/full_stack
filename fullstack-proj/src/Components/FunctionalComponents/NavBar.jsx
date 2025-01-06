@@ -1,9 +1,10 @@
 import "../../assets/css/NavBar.css";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 var NavBar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Check if the user is authenticated
@@ -18,6 +19,7 @@ var NavBar = () => {
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
         setIsAuthenticated(false); // Update state after logout
+        navigate('/login');
     };
 
     return (
