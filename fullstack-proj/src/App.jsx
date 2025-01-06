@@ -11,8 +11,8 @@ import UseContext from './Components/FunctionalComponents/UseContext';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import UseMemo from './Components/FunctionalComponents/UseMemo';
 import Login from './Components/FunctionalComponents/Login';
-import Signup from './Components/FunctionalComponents/SignUp';
 import { useState, useEffect } from 'react';
+import SignUp from './Components/FunctionalComponents/SignUp';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,7 +32,7 @@ function App() {
         <Routes>
           {/* Redirect to login if not authenticated */}
           <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/signup" element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
           <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
