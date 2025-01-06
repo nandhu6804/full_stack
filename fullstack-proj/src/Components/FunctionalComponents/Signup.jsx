@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function SignUp({ setIsAuthenticated }) {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -13,16 +15,23 @@ function SignUp({ setIsAuthenticated }) {
 
         try {
             const response = await axios.post('http://localhost:5000/signup', {
+                name,
                 email,
                 Password,
             });
 
-            setMessage(response.data);
-            if (response.data === 'user created') {
+            // If response is an object, extract the message
+            if (typeof response.data === 'object' && response.data.message) {
+                setMessage(response.data.message); // Set message property from response
+            } else {
+                setMessage(response.data); // Set the response data if it's already a string
+            }
+
+            if (response.data === 'user created' || response.data.message === 'user created') {
                 localStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true); // Update state to reflect authentication
                 setTimeout(() => {
-                    navigate('/home'); // Redirect to the home page
+                    navigate('/login'); // Redirect to the login page after successful signup
                 }, 1000);
             }
         } catch (error) {
