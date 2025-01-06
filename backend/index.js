@@ -71,79 +71,68 @@ app.use(cors()); // To handle CORS issues
 
 // MongoDB connection
 mongoose.connect('mongodb://localhost:27017/signup-demo', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch((err) => console.log('MongoDB connection error:', err));
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log('MongoDB connection error:', err));
 
 // Signup endpoint
 app.post('/signup', async (req, res) => {
-    const { name, email, Password } = req.body;
+  const { name, email, Password } = req.body;
 
-    console.log('Received data:', { name, email, Password }); // Log incoming data
+  if (!name || !email || !Password) {
+    return res.status(400).json('Please provide name, email, and password');
+  }
 
-    if (!name || !email || !Password) {
-        return res.status(400).json('Please provide name, email, and password');
+  try {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json('User already exists');
     }
 
-    try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json('User already exists');
-        }
+    // Create a new user
+    const newUser = new User({ name, email, Password });
+    await newUser.save();
 
-        const hashedPassword = await bcrypt.hash(Password, 10);
-        console.log('Hashed Password:', hashedPassword); // Log hashed password
-
-        const newUser = new User({ name, email, Password: hashedPassword });
-        const savedUser = await newUser.save();
-
-        console.log('User saved successfully:', savedUser); // Log saved user
-        res.status(201).json('User registered successfully');
-    } catch (error) {
-        console.error('Error during signup:', error); // Log error
-        res.status(500).json('Internal server error');
-    }
+    // Return success response
+    res.status(201).json('User registered successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal server error');
+  }
 });
 
-
-//login endpoint
-app.post('/login', async (req, res) => {
-    const { email, Password } = req.body;
-
-    try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json('Invalid email');
-        }
-
-        const isPasswordValid = await bcrypt.compare(Password, user.Password);
-        if (!isPasswordValid) {
-            return res.status(400).json('Invalid password');
-        }
-
-        // Send a success response
-        res.status(200).json({ message: 'User logged in successfully', user });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json('Internal server error');
+app.post('/login',async(req,res)=>{
+  var {email,Password}=req.body;
+  console.log(email,Password)
+  var exp=await User.findOne({email})
+  if(exp){
+    if(exp.Password===Password){
+      res.json("user logined")
     }
-});
+    else{
+      res.json("Password not correct");
+    }
+  }else{
+    res.json("invalid mail");
+  }
+})
 
 //contact
 app.post("/contact", (req, res) => {
-    const { name, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-    if (!name || !email || !message) {
-        return res.status(400).send("All fields are required");
-    }
+  if (!name || !email || !message) {
+    return res.status(400).send("All fields are required");
+  }
 
-    console.log("Received data:", { name, email, message });
+  console.log("Received data:", { name, email, message });
 
-    // Simulate successful response
-    res.status(200).send("Message received successfully!");
+  // Simulate successful response
+  res.status(200).send("Message received successfully!");
 });
 
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
