@@ -9,8 +9,9 @@ import UseEffect from './Components/FunctionalComponents/UseEffect';
 import UseRef from './Components/FunctionalComponents/UseRef';
 import UseContext from './Components/FunctionalComponents/UseContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import UseMemo from './Components/FunctionalComponents/USeMemo';
-
+import UseMemo from './Components/FunctionalComponents/UseMemo';
+import Login from './Components/FunctionalComponents/Login';
+import Signup from './Components/FunctionalComponents/SignUp';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/usecontext" element={<UseContext />} />
           <Route path="/usememo" element={<UseMemo />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
 
         <Footer />

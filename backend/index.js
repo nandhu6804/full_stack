@@ -1,286 +1,149 @@
 /*var express = require('express');
-var path = require('path');
-var mdb = require('mongoose');
-var User = require('../backend/models/users');
-var Admin = require('../backend/models/admin');
 var app = express();
+var mdb = require('mongoose');
+var path = require('path');
+var cors=require('cors');
+var User = require('./models/user'); // Ensure proper case for the model
 const PORT = 3001;
 
-// Middleware to parse JSON bodies
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
-// MongoDB connection
-mdb.connect("mongodb://localhost:27017/")
-    .then(() => {
-        console.log("MongoDB Connection Successful...");
-    })
-    .catch((err) => {
-        console.error("Check Your Connection String...", err);
-    });
+// Connect to MongoDB
+mdb.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Connected Successfully"); 
+  })
+  .catch((err) => {
+    console.log("Error in connection:", err);
+  });
 
-// GET methods
+// Root Route
 app.get('/', (req, res) => {
-    //res.json("hello!!! let's learn");
-    const userLoggedIn = req.session && req.session.user;
-    if (userLoggedIn) {
-        res.redirect('/login');
-    }
-    else {
-        res.sendFile(path.join(__dirname, 'public', 'user-signup.html'));
-    }
+  res.send("Welcome to backend server");
 });
 
-app.get('/json', (req, res) => {
-    res.json({ server: 'hello!!!', url: 'localhost', port: '3001' });
-});
-
+// Static File Route
 app.get('/static', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html')); // Fixed typo in __dirname
 });
 
-app.get('/html2', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index2.html'));
-});
-
-// POST method for signup
-//single post-no use of async&await
-//miltiplepost-use async&await
-app.post('/postsignup', async (req, res) => {
-    console.log("Request body:", req.body);
-    const { firstName, lastName, email, password } = req.body;
-
-    try {
-        // Create a new user
-        const newUser = new User({
-            firstName,
-            lastName,
-            email,
-            password
-        });
-        await newUser.save();
-        console.log("User added successfully...");
-        res.status(200).send("User added successfully...");
-    }
-    catch (err) {
-        console.error("Error saving user:", err);
-        res.status(500).send("Error adding user.");
-    }
-});
-
-//get method for signup
-//single get-no use of async&await
-//miltiple get-use async&await
-app.get('/getsignup', async (req, res) => {
-    try {
-        var allSignUpRecords = await User.find();
-        res.json(allSignUpRecords);
-        console.log("All data are fetched..")
-    }
-    catch (err) {
-        console.log(err);
-        res.send(err);
-        //console.log("Can't able to fetch data")
-    }
-});
-
-//signup route
+// Signup Route
 app.post('/signup', async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-    try {
-        const newUser = new User({
-            firstName,
-            lastName,
-            email,
-            password
-        });
-        await newUser.save();
-        res.status(200).send("Signup successful!");
-    } catch (err) {
-        res.status(500).send("Error signing up user.");
-    }
+  console.log(req.body);
+  const { firstName, lastName, email } = req.body; // Destructure the request body
+  console.log(firstName, lastName, email);
+
+  try {
+    const newUser = new User({
+      firstName: firstName,
+      lastName: lastName,
+      email: email
+    });
+    await newUser.save(); // Use await to save the new user
+    console.log("User added successfully");
+    res.status(200).send("User added successfully");
+  } catch (err) {
+    console.log(err); // Proper error logging
+    res.status(500).send("Error adding user");
+  }
 });
 
-//login route
-app.post('/login', async (req, res) => {
-    var { email, password } = req.body;
-    try {
-        //var existingUser = await User.findOne({ email, password });
-        var existingUser = await User.findOne({ email: email });
-        console.log(existingUser)
-        if (existingUser) {
-            if (existingUser.password !== password) {
-                res.json({ message: "Invalid Credentials", isLoggedin: false })
-                //res.status(401).send("Invalid credentials.");
-            }
-            else {
-                res.json({ message: "Login successful", isLoggedin: true })
-                //res.status(200).send("Login successful!");
-            }
-        }
-    }
-    catch (err) {
-        res.status(500).send("Server error.");
-    }
-});
-
-
-// Start server
+// Start the Server
 app.listen(PORT, () => {
-    console.log('Backend Server Started\nURL: http://localhost:3001');
+  console.log(`Backend server started\nURL: http://localhost:${PORT}`);
 });
 */
+
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
-const User = require('./models/users'); // User Model
-const Admin = require('./models/admin'); // Admin Model
-const bcrypt = require('bcryptjs'); // For password hashing
+const bcrypt = require('bcryptjs');
+const cors = require('cors');
+
+// Model for user (ensure you only declare it once)
+const User = require('./models/User'); // Import the user model once
+
 const app = express();
-const PORT = 3001;
+const PORT = 5000;
 
 // Middleware
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json()); // To parse JSON data from the request
+app.use(cors()); // To handle CORS issues
 
 // MongoDB connection
-mongoose
-    .connect('mongodb://localhost:27017/db')
-    .then(() => console.log('MongoDB Connection Successful...'))
-    .catch((err) => console.error('Check Your Connection String...', err));
+mongoose.connect('mongodb://localhost:27017/signup-demo', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch((err) => console.log('MongoDB connection error:', err));
 
-// Routes
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'user-signup.html'));
-});
+// Signup endpoint
+app.post('/signup', async (req, res) => {
+    const { name, email, Password } = req.body;
 
-// Route to delete a user by ID
-app.delete('/delete-user/:id', async (req, res) => {
-    const userId = req.params.id;
+    console.log('Received data:', { name, email, Password }); // Log incoming data
+
+    if (!name || !email || !Password) {
+        return res.status(400).json('Please provide name, email, and password');
+    }
 
     try {
-        // Find and delete the user by their ObjectId
-        const user = await User.findByIdAndDelete(userId);
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json('User already exists');
+        }
 
+        const hashedPassword = await bcrypt.hash(Password, 10);
+        console.log('Hashed Password:', hashedPassword); // Log hashed password
+
+        const newUser = new User({ name, email, Password: hashedPassword });
+        const savedUser = await newUser.save();
+
+        console.log('User saved successfully:', savedUser); // Log saved user
+        res.status(201).json('User registered successfully');
+    } catch (error) {
+        console.error('Error during signup:', error); // Log error
+        res.status(500).json('Internal server error');
+    }
+});
+
+
+//login endpoint
+app.post('/login', async (req, res) => {
+    const { email, Password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.json({ success: false, message: 'User not found' });
+            return res.status(400).json('Invalid email');
         }
 
-        // Successful deletion
-        res.json({ success: true, message: 'User deleted successfully' });
+        const isPasswordValid = await bcrypt.compare(Password, user.Password);
+        if (!isPasswordValid) {
+            return res.status(400).json('Invalid password');
+        }
+
+        // Send a success response
+        res.status(200).json({ message: 'User logged in successfully', user });
     } catch (error) {
         console.error(error);
-        res.json({ success: false, message: 'Error deleting user' });
+        res.status(500).json('Internal server error');
     }
 });
 
-// Route to delete an admin by ID
-app.delete('/delete-admin/:id', async (req, res) => {
-    const adminId = req.params.id;
+//contact
+app.post("/contact", (req, res) => {
+    const { name, email, message } = req.body;
 
-    try {
-        // Find and delete the admin by their ObjectId
-        const admin = await Admin.findByIdAndDelete(adminId);
-
-        if (!admin) {
-            return res.json({ success: false, message: 'Admin not found' });
-        }
-
-        // Successful deletion
-        res.json({ success: true, message: 'Admin deleted successfully' });
-    } catch (error) {
-        console.error(error);
-        res.json({ success: false, message: 'Error deleting admin' });
+    if (!name || !email || !message) {
+        return res.status(400).send("All fields are required");
     }
+
+    console.log("Received data:", { name, email, message });
+
+    // Simulate successful response
+    res.status(200).send("Message received successfully!");
 });
 
-// User Signup
-app.post('/user/signup', async (req, res) => {
-    const { username, password } = req.body;
 
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username:username, password: hashedPassword });
-        await newUser.save();
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-// User Login
-app.post('/user/login', async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        const user = await User.findOne({ username });
-        if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        res.status(200).json({ message: 'User login successful' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-// Admin Signup
-app.post('/admin/signup', async (req, res) => {
-    const { adminName, email, password } = req.body;
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newAdmin = new Admin({ adminName:adminName, email:email, password: hashedPassword });
-        await newAdmin.save();
-        res.status(201).send('Admin signup successful!');
-    } catch (err) {
-        console.error('Error signing up admin:', err);
-        res.status(500).send('Error signing up admin.');
-    }
-});
-
-// Admin Login
-app.post('/admin/login', async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        // Fetch admin from database
-        const admin = await Admin.findOne({ adminName: username });
-        if (!admin) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // Compare passwords
-        const isMatch = await bcrypt.compare(password, admin.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // If login is successful
-        return res.status(200).json({ message: 'Admin login successful' });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Server error' });
-    }
-});
-
-// Fetch All Users (Admin Only)
-app.get('/admin/users', async (req, res) => {
-    try {
-        const users = await User.find(); // Fetch users from User model
-        res.status(200).json(users);
-    } catch (err) {
-        console.error('Error fetching users:', err);
-        res.status(500).send('Error fetching users.');
-    }
-});
-
-// Start server
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
